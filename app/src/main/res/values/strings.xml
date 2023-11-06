@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">mangatsume</string>
+
+    <!-- Crash screen -->
+    <string name="crash_screen_title">Whoops!</string>
+    <string name="crash_screen_description">%s ran into an unexpected error.</string>
+    <string name="crash_screen_restart_application">Restart the application</string>
+    <string name="crash_screen_close">Close</string>
+
+</resources>
