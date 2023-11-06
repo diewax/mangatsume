@@ -21,7 +21,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.achmadss.mvi.base.navigation.Route
 import com.achmadss.mvi.base.ui.UIWrapper
-import com.achmadss.mvi.feature.user_details.UserDetailsIntent
+import com.achmadss.mvi.feature.user_details.model.UserDetailsIntent
 
 fun NavGraphBuilder.routeUserDetails(
     route: Route,

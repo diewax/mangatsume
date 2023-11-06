@@ -1,4 +1,4 @@
-package com.achmadss.mvi.feature.user_details
+package com.achmadss.mvi.feature.user_details.model
 
 data class UserDetailsState (
     val firstName: String = "", // initial value must be NOT NULL

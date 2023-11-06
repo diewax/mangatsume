@@ -1,4 +1,4 @@
-package com.achmadss.mvi.feature.user_details
+package com.achmadss.mvi.feature.user_details.model
 
 sealed class UserDetailsIntent {
     data class LoadData(
