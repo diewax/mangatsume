@@ -22,11 +22,11 @@ class ChapterRepositoryImpl @Inject constructor(
     override suspend fun getChapterById(
         chapterId: Long
     ) = flow {
-        emit(DataState.OnLoading)
+        emit(DataState.Loading)
         val data = chapterDao.getChapterById(chapterId) ?: throw Exception("Chapter not found")
-        emit(DataState.OnData(data))
+        emit(DataState.Success(data))
     }.flowOn(Dispatchers.IO).catch {
-        emit(DataState.OnFailure(it))
+        emit(DataState.Error(it))
     }
 
     override suspend fun markChapterAsRead(

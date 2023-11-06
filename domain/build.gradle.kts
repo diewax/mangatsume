@@ -44,7 +44,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
+    // hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+    // gson
+    implementation(libs.gson)
+    // retrofit
+    implementation(libs.retrofit)
 }

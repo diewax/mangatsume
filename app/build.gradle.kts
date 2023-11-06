@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
@@ -5,6 +8,10 @@ plugins {
     alias(libs.plugins.hiltAndroid)
     kotlin("plugin.serialization") version "1.8.10"
     alias(libs.plugins.ksp)
+}
+
+val properties = Properties().apply {
+    load(FileInputStream("gradle.properties"))
 }
 
 android {
@@ -42,6 +49,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
@@ -92,8 +100,3 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 }
-
-// Allow references to generated code
-//kapt {
-//    correctErrorTypes = true
-//}

@@ -20,10 +20,10 @@ class HistoryRepositoryImpl @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
     override suspend fun getAllHistory() = flow {
-        emit(DataState.OnLoading)
-        emit(DataState.OnData(historyDao.getAllHistory()))
+        emit(DataState.Loading)
+        emit(DataState.Success(historyDao.getAllHistory()))
     }.flowOn(Dispatchers.IO).catch {
-        emit(DataState.OnFailure(it))
+        emit(DataState.Error(it))
     }
 
     override suspend fun deleteHistory(

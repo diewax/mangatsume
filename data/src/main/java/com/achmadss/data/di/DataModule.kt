@@ -1,9 +1,10 @@
 package com.achmadss.data.di
 
 import android.content.Context
-import androidx.room.Room
-import com.achmadss.data.local.database.MangatsumeDatabase
+import com.achmadss.data.local.database.LocalDataSource
 import com.achmadss.data.provider.DataProvider
+import com.achmadss.data.remote.RemoteDataSource
+import com.achmadss.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,17 +16,20 @@ import dagger.hilt.components.SingletonComponent
 object DataModule {
 
     @Provides
-    internal fun provideMangatsumeDatabase(
+    internal fun provideRemoteDataSource(): RemoteDataSource = DataProvider.initializeRemoteDataSource(BuildConfig.BASE_URL)
+
+    @Provides
+    internal fun provideLocalDataSource(
         @ApplicationContext context: Context,
-    ): MangatsumeDatabase = DataProvider.initializeDatabase(context)
+    ): LocalDataSource = DataProvider.initializeLocalDataSource(context)
 
     @Provides
-    internal fun provideMangaDao(db: MangatsumeDatabase) = db.mangaDao()
+    internal fun provideMangaDao(db: LocalDataSource) = db.mangaDao()
 
     @Provides
-    internal fun provideChapterDao(db: MangatsumeDatabase) = db.chapterDao()
+    internal fun provideChapterDao(db: LocalDataSource) = db.chapterDao()
 
     @Provides
-    internal fun provideHistoryDao(db: MangatsumeDatabase) = db.historyDao()
+    internal fun provideHistoryDao(db: LocalDataSource) = db.historyDao()
 
 }

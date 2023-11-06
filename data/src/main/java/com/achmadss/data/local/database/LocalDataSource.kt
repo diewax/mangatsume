@@ -19,7 +19,7 @@ import com.achmadss.data.local.entities.History
     version = 1
 )
 @TypeConverters(Converters::class)
-abstract class MangatsumeDatabase : RoomDatabase() {
+abstract class LocalDataSource : RoomDatabase() {
     abstract fun mangaDao(): MangaDao
     abstract fun chapterDao(): ChapterDao
     abstract fun historyDao(): HistoryDao

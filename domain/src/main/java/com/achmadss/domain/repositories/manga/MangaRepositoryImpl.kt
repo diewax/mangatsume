@@ -22,18 +22,18 @@ class MangaRepositoryImpl @Inject constructor(
     override suspend fun getMangaWithChaptersById(
         mangaId: Long
     ) = flow {
-        emit(DataState.OnLoading)
+        emit(DataState.Loading)
         val data = mangaDao.getMangaWithChaptersById(mangaId) ?: throw Exception("Manga not found")
-        emit(DataState.OnData(data))
+        emit(DataState.Success(data))
     }.flowOn(Dispatchers.IO).catch {
-        emit(DataState.OnFailure(it))
+        emit(DataState.Error(it))
     }
 
     override suspend fun getAllMangas() = flow {
-        emit(DataState.OnLoading)
-        emit(DataState.OnData(mangaDao.getAllMangas()))
+        emit(DataState.Loading)
+        emit(DataState.Success(mangaDao.getAllMangas()))
     }.flowOn(Dispatchers.IO).catch {
-        emit(DataState.OnFailure(it))
+        emit(DataState.Error(it))
     }
 
     override suspend fun deleteManga(

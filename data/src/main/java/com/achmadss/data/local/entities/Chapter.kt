@@ -2,6 +2,7 @@ package com.achmadss.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
@@ -12,7 +13,8 @@ import java.time.LocalDateTime
         parentColumns = arrayOf("mangaId"),
         childColumns = arrayOf("mangaId"),
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index(value = ["mangaId"])]
 )
 data class Chapter(
     @PrimaryKey(autoGenerate = true) val chapterId: Long = 0,

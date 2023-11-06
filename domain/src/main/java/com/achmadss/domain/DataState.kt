@@ -1,7 +1,7 @@
 package com.achmadss.domain
 
 sealed class DataState<out T> {
-    object OnLoading : DataState<Nothing>()
-    data class OnData<out Result>(val data: Result) : DataState<Result>()
-    data class OnFailure(val error: Throwable?) : DataState<Nothing>()
+    data object Loading : DataState<Nothing>()
+    data class Success<out Result>(val data: Result) : DataState<Result>()
+    data class Error(val error: Throwable?) : DataState<Nothing>()
 }
